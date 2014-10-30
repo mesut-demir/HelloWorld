@@ -1,0 +1,22 @@
+<p>This is the about view.</p>
+
+<div ng-controller="AboutCtrl">
+	<p><strong>{{myMsg}}</strong></p>
+	<input type="text" ng-model="myMsg">
+	
+
+	<pre>{{myJson}}</pre>
+	<input type="text" ng-model="myJson.name">
+
+	<button ng-click="myFunction(myMsg)">Click Me</button>
+
+	<div ng-controller="AboutCtrl">
+		<p><strong>{{myMsg}}</strong></p>
+		<input type="text" ng-model="myMsg">
+
+		<pre>{{myJson}}</pre>
+		<input type="text" ng-model="myJson.name">
+
+		<button ng-click="myFunction(myMsg)">Click Me</button>
+	</div>
+</div>
