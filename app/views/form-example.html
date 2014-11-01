@@ -1,0 +1,84 @@
+<p>This is the form-example view.</p>
+
+
+<!-- form must have a name for validation, we don't use 'action'  angular -->
+<!-- <form name="formExample">
+
+	<input type="text" name="name" placeholder="Name" ng-model="user.name">
+
+	<select name="option" placeholder="Select Option" ng-model="user.option">
+		option*3   ctrlshift v + ctrl shif /
+		<option value="">Choose..</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
+ 
+	name is only needed for the validation
+	<input type="text" ng-model="user.surname">
+
+	<pre>{{user | json}}</pre>
+	
+</form> -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- bu sayfanin controlu  apps.js den geliyor -->
+
+<div ng-form="formExample">
+<!-- ng-change -> try prevent to use in input because otherwise it will go everytime to the function which is perfromace problem,, but use it in SELECT is good option. -->
+	<input type="text" ng-model="user.username" ng-change="nameChanged()">
+	<select ng-model="user.gender" ng-change="genderChanged()">
+		<option value="male">Male</option>
+		<option value="female">Female</option>
+	</select>
+
+	<select ng-model="user.jersey" ng-show="user.gender == 'male'">
+		<option value="fenerbahce">Fenerbahce</option>
+		<option value="galatasaray">Galatasaray</option>
+	</select>
+
+<!-- ng-model = controller icinde bilgileri aliyor. eg. controller $scope her hangi bir propertisi -->
+	<textarea name="" cols="20" rows="5" ng-model="user.description"></textarea>
+
+	<input type="checkbox" ng-model="option" ng-controller="nameCTRL" name="nameChjeckbox">
+
+	male<input type="radio" name="gender" value="male" ng-model="user.gender">
+	female<input type="radio" name="gender" value="female" ng-model="user.gender">
+
+<!-- name is needed for validation (e.g. required or number etc)
+if you don't need validation then it's not important to use name -->
+	<input type="number" name="asd" ng-required="user.gender == 'male'" ng-model="user.sallary">
+	<span ng-show="formExample.asd.$error.required">this field is required.</span>
+	<span ng-show="formExample.asd.$error.number">this field should be a number.</span>
+	<input type="date" ng-model="user.joindate">
+ 	
+ 	<!-- <select ng-model="user.shoes" ng-hide="user.gender == 'male'"> 
+ng-if doesn't show in DOM 
+ng-hide/ng-show just use display:none
+ 	-->
+   <select ng-model="user.shoes" ng-if="user.gender == 'female'">
+		<option value="bot">Bot</option>
+		<option value="babet">Babet</option>
+	</select>
+</div>
+
+<pre>
+https://docs.angularjs.org/api/ng/type/form.FormController<br/>
+is the form valid ?{{formExample.$valid | json }}<br/>
+is checkbox changed?{{formExample.nameChjeckbox.$dirty}}<br/>
+</pre>
+
+
+<div ng-controller="MainCtrl">{{  awesomeThings[1]}}</div>
+
+
+<!--  wrong use because ng-form and html form tag are identicall 
+so browser throw error using same tag twice -->
+<!-- <form ng-form="formExample">
+	
+</form> -->
